@@ -235,11 +235,11 @@
           <!-- Instant first-paint fallback frame before canvas initializes -->
           <img
             id="hero-scroll-fallback"
-            src="animation_frames/ezgif-frame-001.jpg"
+            src="animation_frames_tablet/ezgif-frame-001.png"
             alt="NOVEXA Scroll Animation Showcase"
             class="w-full h-full object-contain pointer-events-none select-none"
           />
-          <!-- High-FPS Canvas for 109-frame scroll scrubbing -->
+          <!-- High-FPS Canvas for 110-frame scroll scrubbing -->
           <canvas
             id="hero-scroll-canvas"
             class="absolute inset-0 w-full h-full block pointer-events-none select-none opacity-0 transition-opacity duration-150"
@@ -1568,23 +1568,50 @@
           if (initialized || !isActiveViewport()) return;
           initialized = true;
 
-          const firstImg = new Image();
-          firstImg.src = getFrameUrl(0);
-          firstImg.onload = () => {
-            drawFrame(currentFrameIndex);
-          };
-          frames[0] = firstImg;
-
-          for (let i = 1; i < totalFrames; i++) {
-            const img = new Image();
-            img.src = getFrameUrl(i);
-            img.onload = () => {
-              if (i === currentFrameIndex) {
-                drawFrame(currentFrameIndex);
+          const startQueue = () => {
+            const order = [];
+            const seen = new Set([0]);
+            const addIndex = (idx) => {
+              if (idx >= 0 && idx < totalFrames && !seen.has(idx)) {
+                seen.add(idx);
+                order.push(idx);
               }
             };
-            frames[i] = img;
-          }
+            addIndex(totalFrames - 1);
+            for (let step = 5; step < totalFrames; step += 5) addIndex(step);
+            for (let i = 1; i < totalFrames; i++) addIndex(i);
+
+            let cursor = 0;
+            const MAX_CONCURRENT = 6;
+            const loadNext = () => {
+              if (cursor >= order.length) return;
+              const idx = order[cursor++];
+              const img = new Image();
+              frames[idx] = img;
+              img.onload = () => {
+                const targetLoaded = frames[currentFrameIndex] && frames[currentFrameIndex].complete && frames[currentFrameIndex].naturalWidth > 0;
+                if (idx === currentFrameIndex || !targetLoaded) {
+                  drawFrame(currentFrameIndex);
+                }
+                loadNext();
+              };
+              img.onerror = loadNext;
+              img.src = getFrameUrl(idx);
+            };
+
+            for (let c = 0; c < MAX_CONCURRENT; c++) {
+              loadNext();
+            }
+          };
+
+          const firstImg = new Image();
+          frames[0] = firstImg;
+          firstImg.onload = () => {
+            drawFrame(currentFrameIndex);
+            startQueue();
+          };
+          firstImg.onerror = startQueue;
+          firstImg.src = getFrameUrl(0);
 
           updateFrameFromScroll();
         };
@@ -1611,15 +1638,15 @@
         initAnimation();
       }
 
-      // Mobile Scroll Animation (109 JPG frames)
+      // Mobile Scroll Animation (110 PNG frames)
       setupScrollFrameHero({
         sectionId: 'mobile-scroll-hero',
         stickyId: 'mobile-hero-sticky',
         canvasId: 'hero-scroll-canvas',
         fallbackId: 'hero-scroll-fallback',
         cueId: 'mobile-scroll-cue',
-        totalFrames: 109,
-        getFrameUrl: (index) => `animation_frames/ezgif-frame-${String(index + 1).padStart(3, '0')}.jpg`,
+        totalFrames: 110,
+        getFrameUrl: (index) => `animation_frames_tablet/ezgif-frame-${String(index + 1).padStart(3, '0')}.png`,
         isActiveViewport: () => window.innerWidth < 768
       });
 

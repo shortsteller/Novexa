@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>NOVEXXA — Mobile Web Development Agency</title>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#08060D',
+            brandCard: '#110D1B',
+            brandBorder: '#271F3B',
+            brandPurple: '#8B5CF6',
+            brandNeon: '#A855F7',
+            brandGlow: '#6366F1'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Typography & Aesthetic Settings -->
+<style data-purpose="typography">
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #08060D;
+      color: #E2E8F0;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<!-- Custom Glows, Borders & Animations -->
+<style data-purpose="custom-styling">
+    .neon-text-glow {
+      text-shadow: 0 0 25px rgba(168, 85, 247, 0.45);
+    }
+    .neon-card-glow {
+      box-shadow: 0 0 35px -10px rgba(139, 92, 246, 0.25);
+    }
+    .hero-glow-back {
+      background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.28) 0%, rgba(8, 6, 13, 0) 70%);
+    }
+    .glass-nav {
+      background: rgba(8, 6, 13, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass-card {
+      background: rgba(17, 13, 27, 0.85);
+      border: 1px solid rgba(139, 92, 246, 0.18);
+    }
+  </style>
+</head>
+<body class="bg-brandDark text-slate-200 antialiased selection:bg-purple-600 selection:text-white">
+<!-- BEGIN: Sticky Mobile Header -->
+<header class="sticky top-0 z-50 glass-nav border-b border-purple-950/60 transition-all duration-300">
+<div class="max-w-[430px] mx-auto px-4 py-3.5 flex items-center justify-between">
+<!-- NOVEXXA Logo -->
+<a aria-label="NOVEXXA Home" class="flex items-center gap-1.5 focus:outline-none" href="#">
+<span class="text-xl font-extrabold tracking-wider text-white">NOVEXX<span class="text-brandNeon">A</span></span>
+</a>
+<!-- Quick Action Buttons -->
+<div class="flex items-center gap-2.5">
+<a class="text-xs font-semibold px-3 py-1.5 rounded-full border border-purple-500/40 text-purple-200 hover:border-purple-400 bg-purple-950/40 transition" href="#inquiry">
+          Quote ↗
+        </a>
+<button aria-label="Toggle navigation" class="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-300 focus:outline-none active:scale-95" id="menu-toggle" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Mobile Drawer / Dropdown Menu -->
+<div class="hidden border-b border-purple-900/40 bg-[#0d0917] px-5 py-4 space-y-3" id="mobile-menu">
+<a class="block text-sm font-medium text-slate-300 hover:text-white py-1" href="#case-studies">Work &amp; Case Studies</a>
+<a class="block text-sm font-medium text-slate-300 hover:text-white py-1" href="#services">Services &amp; Capabilities</a>
+<a class="block text-sm font-medium text-slate-300 hover:text-white py-1" href="#framework">The Framework</a>
+<a class="block text-sm font-medium text-slate-300 hover:text-white py-1" href="#estimator">Instant Estimator</a>
+<a class="block text-sm font-medium text-purple-400 font-semibold py-1" href="#inquiry">Start a Project</a>
+</div>
+</header>
+<!-- END: Sticky Mobile Header -->
+<main class="max-w-[430px] mx-auto overflow-hidden px-4 pb-12">
+<!-- BEGIN: Hero Section -->
+<section class="pt-6 pb-8 relative" data-purpose="hero-section">
+<!-- Neon background ambiance -->
+<div class="hero-glow-back absolute inset-0 -top-10 pointer-events-none"></div>
+<!-- Agency Pill Badge -->
+<div class="relative z-10 flex items-center gap-2 mb-3">
+<span class="text-[10px] tracking-widest uppercase font-bold text-purple-300 bg-purple-950/80 border border-purple-600/30 px-3 py-1 rounded-full">
+          Web Development Agency
+        </span>
+<div class="h-px w-8 bg-purple-500/50"></div>
+</div>
+<!-- Main Headline -->
+<h1 class="relative z-10 text-3xl font-extrabold tracking-tight text-white uppercase leading-[1.1] mb-2">
+        NOVEXX<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-300 to-indigo-300">A</span>
+</h1>
+<p class="relative z-10 text-sm font-bold tracking-wider text-purple-200/90 uppercase mb-3">
+        Websites That Build Brands
+      </p>
+<!-- Subtitle Copy -->
+<p class="relative z-10 text-sm text-slate-400 leading-relaxed mb-6 font-normal">
+        Custom, high-performing websites for gyms, boutiques, resorts, cafés and growing businesses.
+      </p>
+<!-- Mobile CTA Buttons -->
+<div class="relative z-10 flex flex-col gap-3 mb-8">
+<a class="w-full text-center py-3.5 px-6 rounded-full font-bold text-sm text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-500 shadow-lg shadow-purple-600/30 active:scale-[0.98] transition" href="#inquiry">
+          Start Your Project ↗
+        </a>
+<a class="w-full text-center py-3 px-6 rounded-full font-semibold text-sm text-slate-300 border border-slate-700 hover:border-purple-400 bg-white/[0.02] flex items-center justify-center gap-2 active:scale-[0.98] transition" href="#case-studies">
+<svg class="w-4 h-4 text-purple-400" fill="currentColor" viewbox="0 0 20 20">
+<path d="M6.3 2.84A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.27l9.34-5.89a1.5 1.5 0 000-2.54L6.3 2.84z"></path>
+</svg>
+          View Our Work
+        </a>
+</div>
+<!-- Hero Visual Graphic -->
+<div class="relative z-10 rounded-2xl overflow-hidden border border-purple-500/30 neon-card-glow bg-black/60 mb-6">
+<img alt="NOVEXXA Showcase - Web Development Agency High-Impact Showcase" class="w-full h-auto object-cover block" loading="eager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu88FPsax2EAY1W3mx8knQqNjZtH5cK_J_BFophMmiUrUvIlgguNyz_MqnDacAR9PQHfl7r2bsRK8mr4tIfn9lyNVofywjRu4m_N-wogVmoTKU_NFHVWT51iSBQzH5w09sdlFiNzxViw8gQb_khuOkVXflL-Vb789mibshado317owko8iRsmtN3VSMU1qcpgJFYA4f-2cXNNYBAICgQ_8We1E7thV4uTHpX9DeS5e6KCQysLv446GDw"/>
+<div class="absolute inset-0 border border-purple-500/20 rounded-2xl pointer-events-none"></div>
+</div>
+<!-- 4 Core Pillars 2x2 Grid -->
+<div class="grid grid-cols-2 gap-2.5 pt-2" data-purpose="hero-pillars">
+<!-- Pillar 1 -->
+<div class="p-3 rounded-xl bg-purple-950/20 border border-purple-900/40 flex items-center gap-2.5">
+<div class="text-purple-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-200">Custom Design</span>
+</div>
+<!-- Pillar 2 -->
+<div class="p-3 rounded-xl bg-purple-950/20 border border-purple-900/40 flex items-center gap-2.5">
+<div class="text-purple-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-200">Modern Tech</span>
+</div>
+<!-- Pillar 3 -->
+<div class="p-3 rounded-xl bg-purple-950/20 border border-purple-900/40 flex items-center gap-2.5">
+<div class="text-purple-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-200">Business Focused</span>
+</div>
+<!-- Pillar 4 -->
+<div class="p-3 rounded-xl bg-purple-950/20 border border-purple-900/40 flex items-center gap-2.5">
+<div class="text-purple-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="text-xs font-semibold text-slate-200">End-to-End Support</span>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Key Performance Metrics -->
+<section class="py-6 border-y border-purple-900/30" data-purpose="metrics-grid">
+<div class="grid grid-cols-2 gap-3 text-center">
+<!-- Metric 1 -->
+<div class="p-4 rounded-xl bg-brandCard/60 border border-purple-900/30">
+<div class="text-2xl font-black text-white tracking-tight">99.8%</div>
+<div class="text-[11px] text-slate-400 uppercase tracking-wider mt-1 font-medium">Google PageSpeed</div>
+</div>
+<!-- Metric 2 -->
+<div class="p-4 rounded-xl bg-brandCard/60 border border-purple-900/30">
+<div class="text-2xl font-black text-purple-300 tracking-tight">120+</div>
+<div class="text-[11px] text-slate-400 uppercase tracking-wider mt-1 font-medium">Builds Delivered</div>
+</div>
+<!-- Metric 3 -->
+<div class="p-4 rounded-xl bg-brandCard/60 border border-purple-900/30">
+<div class="text-2xl font-black text-purple-300 tracking-tight">+145%</div>
+<div class="text-[11px] text-slate-400 uppercase tracking-wider mt-1 font-medium">Avg Client ROI</div>
+</div>
+<!-- Metric 4 -->
+<div class="p-4 rounded-xl bg-brandCard/60 border border-purple-900/30">
+<div class="text-2xl font-black text-white tracking-tight">4.9 / 5</div>
+<div class="text-[11px] text-slate-400 uppercase tracking-wider mt-1 font-medium">Satisfaction Score</div>
+</div>
+</div>
+</section>
+<!-- END: Key Performance Metrics -->
+<!-- BEGIN: Featured Case Studies Section -->
+<section class="py-10" data-purpose="case-studies-section" id="case-studies">
+<div class="mb-5">
+<span class="text-[11px] font-bold tracking-widest text-purple-400 uppercase">Featured Case Studies</span>
+<h2 class="text-2xl font-black text-white tracking-tight leading-snug mt-1">
+          Engineered For <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-indigo-200">High Growth</span>
+</h2>
+<p class="text-xs text-slate-400 mt-2">
+          Tailored for high-growth sectors: Gyms, Boutiques, Resorts, and Specialty Hospitality.
+        </p>
+</div>
+<!-- Vertical Stack of Mobile Case Cards -->
+<div class="space-y-4">
+<!-- Case Study 1: Gym -->
+<article class="p-5 rounded-2xl bg-brandCard border border-purple-800/40 relative overflow-hidden group">
+<div class="flex items-center justify-between mb-3">
+<span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-950/90 text-purple-300 border border-purple-600/40">
+              Gym &amp; Athletic Facility
+            </span>
+<span class="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+              ↗ +160% Sign-ups
+            </span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Elite Fitness Club Platform</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Complete membership conversion portal featuring automated class booking schedules, dynamic checkout funnels, and trainer profiles.
+          </p>
+<div class="flex flex-wrap items-center justify-between pt-3 border-t border-purple-900/30 gap-2">
+<div class="flex flex-wrap gap-1.5 text-[10px] text-slate-400 font-mono">
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Next.js 14</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Stripe Billing</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Supabase</span>
+</div>
+<span class="w-7 h-7 rounded-full bg-purple-900/40 flex items-center justify-center text-purple-300">
+              ↗
+            </span>
+</div>
+</article>
+<!-- Case Study 2: Boutique Fashion -->
+<article class="p-5 rounded-2xl bg-brandCard border border-purple-800/40 relative overflow-hidden">
+<div class="flex items-center justify-between mb-3">
+<span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-950/90 text-purple-300 border border-purple-600/40">
+              Luxury Boutique Fashion
+            </span>
+<span class="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+              ↗ +210% Online Orders
+            </span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Aura Silk &amp; Handcrafted Wear</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-4">
+            High-aesthetic e-commerce experience with editorial product lookbooks, fluid micro-interactions, currency localization, and frictionless checkouts.
+          </p>
+<div class="flex flex-wrap items-center justify-between pt-3 border-t border-purple-900/30 gap-2">
+<div class="flex flex-wrap gap-1.5 text-[10px] text-slate-400 font-mono">
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Shopify Headless</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Tailwind</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Framer</span>
+</div>
+<span class="w-7 h-7 rounded-full bg-purple-900/40 flex items-center justify-center text-purple-300">
+              ↗
+            </span>
+</div>
+</article>
+<!-- Case Study 3: Resort -->
+<article class="p-5 rounded-2xl bg-brandCard border border-purple-800/40 relative overflow-hidden">
+<div class="flex items-center justify-between mb-3">
+<span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-950/90 text-purple-300 border border-purple-600/40">
+              Resort &amp; Hospitality
+            </span>
+<span class="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+              ↗ Direct Bookings +85%
+            </span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Sovereign Bay Luxury Villas</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Immersive resort portal featuring 360 villa virtual tours, interactive calendar booking engine, and custom guest itinerary builder.
+          </p>
+<div class="flex flex-wrap items-center justify-between pt-3 border-t border-purple-900/30 gap-2">
+<div class="flex flex-wrap gap-1.5 text-[10px] text-slate-400 font-mono">
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">React 18</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Three.js</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Custom API</span>
+</div>
+<span class="w-7 h-7 rounded-full bg-purple-900/40 flex items-center justify-center text-purple-300">
+              ↗
+            </span>
+</div>
+</article>
+<!-- Case Study 4: Roastery -->
+<article class="p-5 rounded-2xl bg-brandCard border border-purple-800/40 relative overflow-hidden">
+<div class="flex items-center justify-between mb-3">
+<span class="text-[10px] font-bold px-2.5 py-1 rounded bg-purple-950/90 text-purple-300 border border-purple-600/40">
+              Café &amp; Coffee Roastery
+            </span>
+<span class="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+              ↗ Subscription +320%
+            </span>
+</div>
+<h3 class="text-lg font-bold text-white mb-2">Velvet Roast Artisanal Roasters</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Interactive tasting guide, recurring beans subscription architecture, and local pick-up integrated with Square POS in real time.
+          </p>
+<div class="flex flex-wrap items-center justify-between pt-3 border-t border-purple-900/30 gap-2">
+<div class="flex flex-wrap gap-1.5 text-[10px] text-slate-400 font-mono">
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Next.js</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Square POS</span>
+<span class="px-2 py-0.5 rounded bg-black/40 border border-purple-900/40">Tailwind</span>
+</div>
+<span class="w-7 h-7 rounded-full bg-purple-900/40 flex items-center justify-center text-purple-300">
+              ↗
+            </span>
+</div>
+</article>
+</div>
+</section>
+<!-- END: Featured Case Studies Section -->
+<!-- BEGIN: Precision Web Engineering Services -->
+<section class="py-8" data-purpose="services-section" id="services">
+<div class="text-center mb-6">
+<span class="text-[10px] font-bold uppercase tracking-widest text-purple-400">Capabilities &amp; Expertise</span>
+<h2 class="text-2xl font-black text-white tracking-tight mt-1">Precision Web Engineering</h2>
+<p class="text-xs text-slate-400 mt-2">
+          We combine modern aesthetics with bulletproof architecture so your website turns visitors into loyal advocates.
+        </p>
+</div>
+<div class="space-y-3.5">
+<!-- Service 1 -->
+<div class="p-4 rounded-xl bg-brandCard/90 border border-purple-900/40">
+<div class="w-9 h-9 rounded-lg bg-purple-900/40 border border-purple-500/30 flex items-center justify-center text-purple-300 mb-3">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<h3 class="text-sm font-bold text-white mb-1.5">Bespoke Web Development</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-3">
+            Custom Next.js &amp; React architectures tailored specifically to your visual identity, with instant page load speeds and CMS control.
+          </p>
+<ul class="text-[11px] text-purple-200/80 space-y-1">
+<li class="flex items-center gap-1.5">✓ Clean Modular Code</li>
+<li class="flex items-center gap-1.5">✓ Headless CMS Integration</li>
+</ul>
+</div>
+<!-- Service 2 -->
+<div class="p-4 rounded-xl bg-brandCard/90 border border-purple-900/40">
+<div class="w-9 h-9 rounded-lg bg-purple-900/40 border border-purple-500/30 flex items-center justify-center text-purple-300 mb-3">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<h3 class="text-sm font-bold text-white mb-1.5">E-Commerce &amp; Booking</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-3">
+            High-converting purchase funnels, intuitive table/class booking systems, and seamless payment gateways with zero friction.
+          </p>
+<ul class="text-[11px] text-purple-200/80 space-y-1">
+<li class="flex items-center gap-1.5">✓ Stripe &amp; Apple Pay</li>
+<li class="flex items-center gap-1.5">✓ Custom Upsell Engines</li>
+</ul>
+</div>
+<!-- Service 3 -->
+<div class="p-4 rounded-xl bg-brandCard/90 border border-purple-900/40">
+<div class="w-9 h-9 rounded-lg bg-purple-900/40 border border-purple-500/30 flex items-center justify-center text-purple-300 mb-3">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<h3 class="text-sm font-bold text-white mb-1.5">3D &amp; Interactive Motion</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-3">
+            Captivating WebGL, Three.js, and subtle scroll-driven interactive experiences that create unforgettable brand authority.
+          </p>
+<ul class="text-[11px] text-purple-200/80 space-y-1">
+<li class="flex items-center gap-1.5">✓ Lightweight 60 FPS</li>
+<li class="flex items-center gap-1.5">✓ Immersive Micro-actions</li>
+</ul>
+</div>
+<!-- Service 4 -->
+<div class="p-4 rounded-xl bg-brandCard/90 border border-purple-900/40">
+<div class="w-9 h-9 rounded-lg bg-purple-900/40 border border-purple-500/30 flex items-center justify-center text-purple-300 mb-3">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<h3 class="text-sm font-bold text-white mb-1.5">SEO &amp; Speed Optimization</h3>
+<p class="text-xs text-slate-400 leading-relaxed mb-3">
+            We tune every script, asset, and metadata layer for 95+ Core Web Vitals to dominate Google local and national search ranks.
+          </p>
+<ul class="text-[11px] text-purple-200/80 space-y-1">
+<li class="flex items-center gap-1.5">✓ Sub-second Latency</li>
+<li class="flex items-center gap-1.5">✓ Schema Structured Data</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- END: Precision Web Engineering Services -->
+<!-- BEGIN: The NOVEXXA Framework (4 Steps) -->
+<section class="py-8" data-purpose="framework-timeline" id="framework">
+<div class="text-center mb-6">
+<span class="text-[10px] font-bold uppercase tracking-widest text-purple-400">How We Deliver</span>
+<h2 class="text-2xl font-black text-white tracking-tight mt-1">The NOVEXXA Framework</h2>
+<p class="text-xs text-slate-400 mt-2">A disciplined 4-stage sprint methodology from initial vision to market dominance.</p>
+</div>
+<div class="space-y-3">
+<!-- Step 01 -->
+<div class="p-4 rounded-xl bg-brandCard/80 border border-purple-900/40 flex gap-3.5 items-start">
+<div class="text-2xl font-black text-purple-400 font-mono leading-none">01</div>
+<div>
+<h3 class="text-sm font-bold text-white mb-1">Discovery &amp; Blueprint</h3>
+<p class="text-xs text-slate-400 leading-relaxed">
+              We dissect your business goals, user personas, competitor gaps, and construct the precise architectural wireframe.
+            </p>
+</div>
+</div>
+<!-- Step 02 -->
+<div class="p-4 rounded-xl bg-brandCard/80 border border-purple-900/40 flex gap-3.5 items-start">
+<div class="text-2xl font-black text-purple-400 font-mono leading-none">02</div>
+<div>
+<h3 class="text-sm font-bold text-white mb-1">Signature UI/UX Design</h3>
+<p class="text-xs text-slate-400 leading-relaxed">
+              We craft your neon-modern high-fidelity visual identity with full desktop and mobile interactive Figma prototypes.
+            </p>
+</div>
+</div>
+<!-- Step 03 -->
+<div class="p-4 rounded-xl bg-brandCard/80 border border-purple-900/40 flex gap-3.5 items-start">
+<div class="text-2xl font-black text-purple-400 font-mono leading-none">03</div>
+<div>
+<h3 class="text-sm font-bold text-white mb-1">Full-Stack Engineering</h3>
+<p class="text-xs text-slate-400 leading-relaxed">
+              Clean, secure code built on Next.js, integrating bookings, custom animations, databases, and lightning CDN delivery.
+            </p>
+</div>
+</div>
+<!-- Step 04 -->
+<div class="p-4 rounded-xl bg-brandCard/80 border border-purple-900/40 flex gap-3.5 items-start">
+<div class="text-2xl font-black text-purple-400 font-mono leading-none">04</div>
+<div>
+<h3 class="text-sm font-bold text-white mb-1">Launch &amp; Scale</h3>
+<p class="text-xs text-slate-400 leading-relaxed">
+              Rigorous cross-device QA, zero-downtime deployment, search indexing, and 30 days of included performance tuning.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: The NOVEXXA Framework -->
+<!-- BEGIN: Interactive Project Estimator Widget -->
+<section class="py-8" data-purpose="estimator-widget" id="estimator">
+<div class="p-5 rounded-2xl bg-gradient-to-b from-[#18112b] to-[#100b1d] border border-purple-700/40 neon-card-glow text-center">
+<span class="inline-block text-[10px] font-bold uppercase tracking-widest text-purple-300 bg-purple-950/90 px-2.5 py-1 rounded-full mb-3 border border-purple-500/30">
+          Instant Estimate Calculator
+        </span>
+<h3 class="text-xl font-extrabold text-white mb-2">Have a Vision in Mind?</h3>
+<p class="text-xs text-slate-400 mb-4">
+          Select your industry to preview tailored build packages for gyms, retail boutiques, resorts, and hospitality brands.
+        </p>
+<!-- Selectable Industry Pills -->
+<div class="grid grid-cols-2 gap-2 mb-5">
+<button class="sector-btn py-2 px-3 rounded-lg text-xs font-semibold bg-purple-600 text-white shadow-sm transition" type="button">
+            Gym / Fitness
+          </button>
+<button class="sector-btn py-2 px-3 rounded-lg text-xs font-semibold bg-black/40 text-slate-300 border border-purple-900/40 hover:border-purple-500 transition" type="button">
+            Boutique Fashion
+          </button>
+<button class="sector-btn py-2 px-3 rounded-lg text-xs font-semibold bg-black/40 text-slate-300 border border-purple-900/40 hover:border-purple-500 transition" type="button">
+            Resort &amp; Hotel
+          </button>
+<button class="sector-btn py-2 px-3 rounded-lg text-xs font-semibold bg-black/40 text-slate-300 border border-purple-900/40 hover:border-purple-500 transition" type="button">
+            Café &amp; Restaurant
+          </button>
+</div>
+<!-- Calculated Timeline Card -->
+<div class="p-3.5 rounded-xl bg-black/50 border border-purple-900/60 mb-4">
+<div class="text-[10px] uppercase font-bold text-slate-400">Estimated Project Delivery</div>
+<div class="text-2xl font-black text-purple-300 my-1">2 - 3 Weeks</div>
+<div class="text-[11px] text-slate-400">Includes Design, Full Development, Mobile Optimization &amp; CMS Handover</div>
+</div>
+<a class="block w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xs uppercase tracking-wider shadow-md hover:opacity-95 transition" href="#inquiry">
+          Lock In Your Sprint ➔
+        </a>
+</div>
+</section>
+<!-- END: Interactive Project Estimator Widget -->
+<!-- BEGIN: Client Testimonials -->
+<section class="py-8" data-purpose="client-testimonials">
+<div class="text-center mb-6">
+<span class="text-[10px] font-bold uppercase tracking-widest text-purple-400">Client Stories</span>
+<h2 class="text-2xl font-black text-white tracking-tight mt-1">Trusted By Ambitious Founders</h2>
+<p class="text-xs text-slate-400 mt-2">Here is what owners experience after switching their digital flagship to NOVEXXA.</p>
+</div>
+<div class="space-y-3.5">
+<!-- Testimonial 1 -->
+<div class="p-4 rounded-xl bg-brandCard border border-purple-900/40">
+<div class="flex text-purple-400 text-xs mb-2 gap-1">★★★★★</div>
+<blockquote class="text-xs text-slate-300 italic mb-3 leading-relaxed">
+            "NOVEXXA transformed our fitness club brand entirely. Membership sign-ups jumped by 160% in month one. The dark aesthetic matches our gym energy perfectly."
+          </blockquote>
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-purple-900/60 text-purple-300 font-bold text-xs flex items-center justify-center border border-purple-600/40">
+              MV
+            </div>
+<div>
+<div class="text-xs font-bold text-white">Marcus Vance</div>
+<div class="text-[10px] text-slate-400">Owner, Elite Fitness Club</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-4 rounded-xl bg-brandCard border border-purple-900/40">
+<div class="flex text-purple-400 text-xs mb-2 gap-1">★★★★★</div>
+<blockquote class="text-xs text-slate-300 italic mb-3 leading-relaxed">
+            "Direct bookings rose so sharply that we decreased third-party OTA commissions by half. The speed and visual elegance of the site are breathtaking."
+          </blockquote>
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-purple-900/60 text-purple-300 font-bold text-xs flex items-center justify-center border border-purple-600/40">
+              SL
+            </div>
+<div>
+<div class="text-xs font-bold text-white">Sophia Laurent</div>
+<div class="text-[10px] text-slate-400">Director, Sovereign Bay Villas</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-4 rounded-xl bg-brandCard border border-purple-900/40">
+<div class="flex text-purple-400 text-xs mb-2 gap-1">★★★★★</div>
+<blockquote class="text-xs text-slate-300 italic mb-3 leading-relaxed">
+            "We didn't just get a website; we got a digital flagship store. Their team understands luxury aesthetics and technical velocity like no other."
+          </blockquote>
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-purple-900/60 text-purple-300 font-bold text-xs flex items-center justify-center border border-purple-600/40">
+              AK
+            </div>
+<div>
+<div class="text-xs font-bold text-white">Ananya Kapoor</div>
+<div class="text-[10px] text-slate-400">Founder, Aura Atelier</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Client Testimonials -->
+<!-- BEGIN: Secondary Mobile Call to Action Banner -->
+<section class="py-6" data-purpose="banner-cta">
+<div class="p-6 rounded-2xl bg-gradient-to-r from-purple-950 via-[#180e2b] to-indigo-950 border border-purple-600/40 text-center">
+<span class="text-[10px] uppercase font-bold tracking-widest text-purple-300">Ready to scale your brand?</span>
+<h3 class="text-xl font-extrabold text-white mt-1 mb-2">Let's Build Something Extraordinary.</h3>
+<p class="text-xs text-slate-300 mb-4 leading-relaxed">
+          Whether you run a high-energy gym, upscale boutique, luxury resort, or bustling café — we craft digital platforms that drive undeniable revenue.
+        </p>
+<a class="block w-full py-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 font-bold text-xs text-white uppercase tracking-wider shadow-lg shadow-purple-600/30" href="#inquiry">
+          Schedule Discovery Call ↗
+        </a>
+</div>
+</section>
+<!-- END: Secondary Mobile Call to Action Banner -->
+<!-- BEGIN: Direct Inquiry Form -->
+<section class="py-8" data-purpose="inquiry-form-section" id="inquiry">
+<div class="mb-5">
+<span class="text-[10px] font-bold uppercase tracking-widest text-purple-400">Direct Inquiries</span>
+<h2 class="text-2xl font-black text-white tracking-tight mt-1">Start Your Project With NOVEXXA</h2>
+<p class="text-xs text-slate-400 mt-1">
+          Fill out the project scope form and our technical lead will return an itemized roadmap and quotation within 24 hours.
+        </p>
+</div>
+<form class="space-y-3.5" onsubmit="event.preventDefault(); alert('Inquiry received! We will contact you within 24 hours.');">
+<!-- Full Name -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="full_name">Full Name</label>
+<input class="w-full bg-[#110d1f] border border-purple-900/60 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-purple-400 focus:ring-1 focus:ring-purple-400" id="full_name" placeholder="Alex Morgan" required="" type="text"/>
+</div>
+<!-- Business Email -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="email">Business Email</label>
+<input class="w-full bg-[#110d1f] border border-purple-900/60 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-purple-400 focus:ring-1 focus:ring-purple-400" id="email" placeholder="alex@company.com" required="" type="email"/>
+</div>
+<!-- Industry Sector -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="sector">Industry Sector</label>
+<select class="w-full bg-[#110d1f] border border-purple-900/60 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-purple-400 focus:ring-1 focus:ring-purple-400" id="sector">
+<option>Gym / Fitness Center</option>
+<option>Fashion &amp; Luxury Boutique</option>
+<option>Resorts &amp; Vacation Rentals</option>
+<option>Cafés &amp; Specialty Coffee</option>
+<option>Other High-Growth Business</option>
+</select>
+</div>
+<!-- Target Timeline -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="timeline">Target Timeline</label>
+<select class="w-full bg-[#110d1f] border border-purple-900/60 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-purple-400 focus:ring-1 focus:ring-purple-400" id="timeline">
+<option>Immediately (&lt; 2 weeks)</option>
+<option>Standard Sprint (2 - 4 weeks)</option>
+<option>Planning Phase (1 - 2 months)</option>
+</select>
+</div>
+<!-- Project Objectives -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="message">Project Objectives &amp; Requirements</label>
+<textarea class="w-full bg-[#110d1f] border border-purple-900/60 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-purple-400 focus:ring-1 focus:ring-purple-400" id="message" placeholder="Tell us about your brand, current challenges, and goals for the new site..." rows="3"></textarea>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 active:scale-[0.98] transition" type="submit">
+          Send Project Inquiry ↗
+        </button>
+<!-- Quick Contacts -->
+<div class="pt-2 text-center text-xs text-slate-400 flex flex-col gap-1">
+<span>Direct Email: <a class="text-purple-300 font-semibold underline" href="mailto:hello@novexxa.agency">hello@novexxa.agency</a></span>
+<span class="text-[11px] text-purple-400 font-medium">⚡ Guaranteed Response Under 24 Hours</span>
+</div>
+</form>
+</section>
+<!-- END: Direct Inquiry Form -->
+</main>
+<!-- BEGIN: Mobile Footer -->
+<footer class="border-t border-purple-950/60 bg-[#06040a] px-4 py-10" data-purpose="site-footer">
+<div class="max-w-[430px] mx-auto space-y-6">
+<!-- Logo and Description -->
+<div>
+<a class="text-xl font-extrabold tracking-wider text-white" href="#">
+          NOVEXX<span class="text-brandNeon">A</span>
+</a>
+<p class="text-xs text-slate-400 mt-2 leading-relaxed">
+          High-caliber engineering and cyberpunk aesthetics for high-velocity businesses. Gyms, boutiques, resorts, and hospitality leaders worldwide.
+        </p>
+</div>
+<!-- Quick Nav Links -->
+<div class="grid grid-cols-2 gap-4 text-xs">
+<div>
+<h4 class="font-bold text-white uppercase text-[11px] mb-2 tracking-wider">Key Niches</h4>
+<ul class="space-y-1.5 text-slate-400">
+<li><a class="hover:text-purple-300" href="#">Fitness &amp; Athletic Gyms</a></li>
+<li><a class="hover:text-purple-300" href="#">Fashion &amp; Luxury Boutiques</a></li>
+<li><a class="hover:text-purple-300" href="#">Resorts &amp; Vacation Rentals</a></li>
+<li><a class="hover:text-purple-300" href="#">Cafés &amp; Specialty Coffee</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white uppercase text-[11px] mb-2 tracking-wider">Company</h4>
+<ul class="space-y-1.5 text-slate-400">
+<li><a class="hover:text-purple-300" href="#case-studies">Work Showcase</a></li>
+<li><a class="hover:text-purple-300" href="#services">Services</a></li>
+<li><a class="hover:text-purple-300" href="#framework">Methodology</a></li>
+<li><a class="hover:text-purple-300" href="#inquiry">Client Inquiries</a></li>
+</ul>
+</div>
+</div>
+<!-- Newsletter Sign Up -->
+<div class="pt-2 border-t border-purple-950/40">
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2" for="newsletter">Stay Ahead</label>
+<div class="flex gap-2">
+<input class="flex-1 bg-[#100d1d] border border-purple-900/60 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:border-purple-400 focus:ring-0" id="newsletter" placeholder="Your work email" type="email"/>
+<button class="px-4 py-2 bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs rounded-lg transition" type="button">
+            Join
+          </button>
+</div>
+<p class="text-[10px] text-slate-500 mt-1.5">Get our monthly breakdown on conversion design and web tech.</p>
+</div>
+<!-- Copyright & Legal -->
+<div class="pt-4 border-t border-purple-950/40 text-[11px] text-slate-500 flex flex-col gap-2">
+<div class="flex justify-between">
+<a class="hover:text-purple-400" href="#">Privacy Policy</a>
+<a class="hover:text-purple-400" href="#">Terms of Service</a>
+<a class="hover:text-purple-400" href="#">Security</a>
+</div>
+<div>
+          © 2026 NOVEXXA Agency. All rights reserved. Websites That Build Brands.
+        </div>
+</div>
+</div>
+</footer>
+<!-- END: Mobile Footer -->
+<!-- BEGIN: Mobile Interaction Scripts -->
+<script data-purpose="mobile-interactions">
+    // Drawer Navigation Toggle
+    const menuBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close menu when clicking link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Estimator Pills Interactive Toggle
+    const sectorBtns = document.querySelectorAll('.sector-btn');
+    sectorBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sectorBtns.forEach(b => {
+          b.classList.remove('bg-purple-600', 'text-white');
+          b.classList.add('bg-black/40', 'text-slate-300');
+        });
+        btn.classList.add('bg-purple-600', 'text-white');
+        btn.classList.remove('bg-black/40', 'text-slate-300');
+      });
+    });
+  </script>
+<!-- END: Mobile Interaction Scripts -->
+</body></html>

@@ -256,8 +256,37 @@
       </div>
     </section>
 
-    <!-- HERO SECTION (Tablet & Desktop >= 768px) -->
-    <section class="hidden md:block relative pt-8 sm:pt-14 lg:pt-20 pb-12 sm:pb-16 lg:pb-24 overflow-hidden" data-purpose="hero-section">
+    <!-- TABLET-ONLY SCROLL ANIMATION HERO SECTION (768px - 1023px) -->
+    <section id="tablet-scroll-hero" class="hidden md:block lg:hidden relative h-[320vh] bg-[#08060D]" data-purpose="tablet-scroll-hero">
+      <div id="tablet-hero-sticky" class="sticky top-[63px] w-full h-[calc(100vh-63px)] h-[calc(100dvh-63px)] flex items-center justify-center bg-[#08060D] overflow-hidden">
+        <div class="ambient-glow-purple absolute inset-0 pointer-events-none"></div>
+        <div class="relative h-full aspect-[9/16] max-w-full flex items-center justify-center [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+          <!-- Instant first-paint fallback frame before canvas initializes -->
+          <img
+            id="tablet-scroll-fallback"
+            src="animation_frames_tablet/ezgif-frame-001.png"
+            alt="NOVEXA Tablet Scroll Animation Showcase"
+            class="w-full h-full object-contain pointer-events-none select-none"
+          />
+          <!-- High-FPS Canvas for 110-frame scroll scrubbing -->
+          <canvas
+            id="tablet-scroll-canvas"
+            class="absolute inset-0 w-full h-full block pointer-events-none select-none opacity-0 transition-opacity duration-150"
+          ></canvas>
+        </div>
+        <!-- Subtle scroll cue that fades out as user scrolls -->
+        <div
+          id="tablet-scroll-cue"
+          class="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-purple-950/80 border border-purple-500/40 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-purple-200 flex items-center gap-2 shadow-lg shadow-purple-950/50 transition-opacity duration-300"
+        >
+          <span>Scroll to explore</span>
+          <span class="animate-bounce inline-block">↓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO SECTION (Desktop >= 1024px) -->
+    <section class="hidden lg:block relative pt-8 sm:pt-14 lg:pt-20 pb-12 sm:pb-16 lg:pb-24 overflow-hidden" data-purpose="hero-section">
       <!-- Ambient Glow Backdrop -->
       <div class="hero-glow-back absolute inset-0 -top-20 pointer-events-none"></div>
 
@@ -411,8 +440,8 @@
       </div>
     </section>
 
-    <!-- KEY PERFORMANCE METRICS BAR (Tablet & Desktop >= 768px) -->
-    <section class="hidden md:block py-8 sm:py-12 border-y border-purple-900/30 bg-[#06040b]" data-purpose="metrics-grid">
+    <!-- KEY PERFORMANCE METRICS BAR (Desktop >= 1024px) -->
+    <section class="hidden lg:block py-8 sm:py-12 border-y border-purple-900/30 bg-[#06040b]" data-purpose="metrics-grid">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 text-center">
           <!-- Metric 1 -->
@@ -444,7 +473,7 @@
     </section>
 
     <!-- FEATURED CASE STUDIES SECTION (Responsive Grid + Industry Filters) -->
-    <section class="pt-4 pb-12 sm:py-20 relative" data-purpose="case-studies-section" id="case-studies">
+    <section class="pt-4 pb-12 lg:py-20 relative" data-purpose="case-studies-section" id="case-studies">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Section Header -->
@@ -1430,31 +1459,36 @@
         }
       });
 
-      // 7. Mobile-Only Scroll Frame Animation (109 frames)
-      const mobileHeroSection = document.getElementById('mobile-scroll-hero');
-      const mobileSticky = document.getElementById('mobile-hero-sticky');
-      const canvas = document.getElementById('hero-scroll-canvas');
-      const fallbackImg = document.getElementById('hero-scroll-fallback');
-      const scrollCue = document.getElementById('mobile-scroll-cue');
+      // 7. Shared Scroll Frame Animation Controller (Mobile < 768px, Tablet 768px-1023px)
+      function setupScrollFrameHero({
+        sectionId,
+        stickyId,
+        canvasId,
+        fallbackId,
+        cueId,
+        totalFrames,
+        getFrameUrl,
+        isActiveViewport
+      }) {
+        const heroSection = document.getElementById(sectionId);
+        const stickyEl = document.getElementById(stickyId);
+        const canvas = document.getElementById(canvasId);
+        const fallbackImg = document.getElementById(fallbackId);
+        const scrollCue = document.getElementById(cueId);
 
-      if (mobileHeroSection && mobileSticky && canvas) {
+        if (!heroSection || !stickyEl || !canvas) return;
+
         const ctx = canvas.getContext('2d');
-        const TOTAL_FRAMES = 109;
-        const frames = new Array(TOTAL_FRAMES);
+        const frames = new Array(totalFrames);
         let initialized = false;
         let currentFrameIndex = 0;
         let rafPending = false;
 
-        const frameUrl = (index) => {
-          const num = String(index + 1).padStart(3, '0');
-          return `animation_frames/ezgif-frame-${num}.jpg`;
-        };
-
         const syncStickyBoundsAndCanvas = () => {
           if (header) {
             const h = header.offsetHeight;
-            mobileSticky.style.top = `${h}px`;
-            mobileSticky.style.height = `calc(100dvh - ${h}px)`;
+            stickyEl.style.top = `${h}px`;
+            stickyEl.style.height = `calc(100dvh - ${h}px)`;
           }
           const rect = canvas.getBoundingClientRect();
           if (rect.width > 0 && rect.height > 0) {
@@ -1472,13 +1506,13 @@
           if (frames[targetIdx] && frames[targetIdx].complete && frames[targetIdx].naturalWidth > 0) {
             return frames[targetIdx];
           }
-          for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+          for (let offset = 1; offset < totalFrames; offset++) {
             const prev = targetIdx - offset;
             if (prev >= 0 && frames[prev] && frames[prev].complete && frames[prev].naturalWidth > 0) {
               return frames[prev];
             }
             const next = targetIdx + offset;
-            if (next < TOTAL_FRAMES && frames[next] && frames[next].complete && frames[next].naturalWidth > 0) {
+            if (next < totalFrames && frames[next] && frames[next].complete && frames[next].naturalWidth > 0) {
               return frames[next];
             }
           }
@@ -1510,12 +1544,12 @@
 
         const updateFrameFromScroll = () => {
           rafPending = false;
-          if (window.innerWidth >= 768) return;
+          if (!isActiveViewport()) return;
 
           syncStickyBoundsAndCanvas();
           const headerHeight = header ? header.offsetHeight : 54;
-          const heroRect = mobileHeroSection.getBoundingClientRect();
-          const scrollableDistance = Math.max(1, mobileHeroSection.offsetHeight - mobileSticky.offsetHeight);
+          const heroRect = heroSection.getBoundingClientRect();
+          const scrollableDistance = Math.max(1, heroSection.offsetHeight - stickyEl.offsetHeight);
           const scrolled = headerHeight - heroRect.top;
           const progress = Math.min(1, Math.max(0, scrolled / scrollableDistance));
 
@@ -1523,28 +1557,27 @@
             scrollCue.style.opacity = progress > 0.04 ? '0' : '1';
           }
 
-          const targetIdx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(progress * (TOTAL_FRAMES - 1))));
+          const targetIdx = Math.min(totalFrames - 1, Math.max(0, Math.round(progress * (totalFrames - 1))));
           if (targetIdx !== currentFrameIndex || canvas.classList.contains('opacity-0')) {
             currentFrameIndex = targetIdx;
             drawFrame(currentFrameIndex);
           }
         };
 
-        const initMobileScrollAnimation = () => {
-          if (initialized || window.innerWidth >= 768) return;
+        const initAnimation = () => {
+          if (initialized || !isActiveViewport()) return;
           initialized = true;
 
-          // Load frame 1 immediately, then preload remaining frames
           const firstImg = new Image();
-          firstImg.src = frameUrl(0);
+          firstImg.src = getFrameUrl(0);
           firstImg.onload = () => {
             drawFrame(currentFrameIndex);
           };
           frames[0] = firstImg;
 
-          for (let i = 1; i < TOTAL_FRAMES; i++) {
+          for (let i = 1; i < totalFrames; i++) {
             const img = new Image();
-            img.src = frameUrl(i);
+            img.src = getFrameUrl(i);
             img.onload = () => {
               if (i === currentFrameIndex) {
                 drawFrame(currentFrameIndex);
@@ -1557,8 +1590,8 @@
         };
 
         window.addEventListener('scroll', () => {
-          if (window.innerWidth >= 768) return;
-          if (!initialized) initMobileScrollAnimation();
+          if (!isActiveViewport()) return;
+          if (!initialized) initAnimation();
           if (!rafPending) {
             rafPending = true;
             requestAnimationFrame(updateFrameFromScroll);
@@ -1566,17 +1599,41 @@
         }, { passive: true });
 
         window.addEventListener('resize', () => {
-          if (window.innerWidth < 768) {
+          if (isActiveViewport()) {
             if (!initialized) {
-              initMobileScrollAnimation();
+              initAnimation();
             } else {
               drawFrame(currentFrameIndex);
             }
           }
         });
 
-        initMobileScrollAnimation();
+        initAnimation();
       }
+
+      // Mobile Scroll Animation (109 JPG frames)
+      setupScrollFrameHero({
+        sectionId: 'mobile-scroll-hero',
+        stickyId: 'mobile-hero-sticky',
+        canvasId: 'hero-scroll-canvas',
+        fallbackId: 'hero-scroll-fallback',
+        cueId: 'mobile-scroll-cue',
+        totalFrames: 109,
+        getFrameUrl: (index) => `animation_frames/ezgif-frame-${String(index + 1).padStart(3, '0')}.jpg`,
+        isActiveViewport: () => window.innerWidth < 768
+      });
+
+      // Tablet Scroll Animation (110 PNG frames)
+      setupScrollFrameHero({
+        sectionId: 'tablet-scroll-hero',
+        stickyId: 'tablet-hero-sticky',
+        canvasId: 'tablet-scroll-canvas',
+        fallbackId: 'tablet-scroll-fallback',
+        cueId: 'tablet-scroll-cue',
+        totalFrames: 110,
+        getFrameUrl: (index) => `animation_frames_tablet/ezgif-frame-${String(index + 1).padStart(3, '0')}.png`,
+        isActiveViewport: () => window.innerWidth >= 768 && window.innerWidth < 1024
+      });
 
     });
   </script>

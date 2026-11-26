@@ -175,10 +175,18 @@
           <span>Estimator</span>
           <span class="text-[10px] bg-purple-900/80 text-purple-300 border border-purple-500/30 px-1.5 py-0.5 rounded-full font-bold">Interactive</span>
         </a>
+        <button type="button" data-open-brochure class="hover:text-purple-300 transition-colors py-1 inline-flex items-center gap-1.5">
+          <span>Brochure</span>
+          <span class="text-[10px] bg-pink-950/80 text-pink-300 border border-pink-500/30 px-1.5 py-0.5 rounded-full font-bold">Plans</span>
+        </button>
       </nav>
 
       <!-- Header Actions (CTA & Mobile Menu Trigger) -->
       <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <!-- Mobile & Tablet Brochure Pill -->
+        <button type="button" data-open-brochure class="lg:hidden inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full border border-pink-500/40 text-pink-200 hover:text-white bg-pink-950/40 hover:bg-pink-900/50 shadow-sm shadow-pink-950/30 transition-all duration-200 active:scale-95">
+          <span>Brochure</span>
+        </button>
         <!-- Quick Quote Pill -->
         <a href="#inquiry" class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full border border-purple-500/40 text-purple-200 hover:text-white bg-purple-950/50 hover:bg-purple-900/60 shadow-sm shadow-purple-900/30 transition-all duration-200 active:scale-95">
           <span>Quote</span>
@@ -217,6 +225,13 @@
           </span>
           <span class="text-xs text-purple-400">Preview ↗</span>
         </a>
+        <button type="button" data-open-brochure class="mobile-nav-link w-full flex items-center justify-between text-slate-200 hover:text-purple-300 py-2 border-b border-purple-950/60 text-left">
+          <span class="flex items-center gap-2">
+            Studio Brochure
+            <span class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-pink-950 text-pink-300 border border-pink-500/30">Plans</span>
+          </span>
+          <span class="text-xs text-purple-400">View ↗</span>
+        </button>
       </div>
       <!-- Mobile Drawer CTA Button -->
       <div class="pt-2">
@@ -595,9 +610,14 @@
           </div>
 
           <!-- Action Button linked to inquiry -->
-          <a id="lock-in-sprint-btn" href="#inquiry" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto py-3.5 px-8 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-500 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-purple-600/30 active:scale-[0.98] transition">
-            <span>Lock In Your Sprint ➔</span>
-          </a>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a id="lock-in-sprint-btn" href="#inquiry" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto py-3.5 px-8 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-500 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-purple-600/30 active:scale-[0.98] transition">
+              <span>Lock In Your Sprint ➔</span>
+            </a>
+            <button type="button" data-open-brochure class="inline-flex items-center justify-center gap-2 w-full sm:w-auto py-3.5 px-7 rounded-full border border-purple-500/50 hover:border-purple-400 bg-purple-950/40 hover:bg-purple-900/60 text-purple-200 hover:text-white font-bold text-xs sm:text-sm uppercase tracking-wider active:scale-[0.98] transition">
+              <span>View Brochure</span>
+            </button>
+          </div>
 
         </div>
 
@@ -812,6 +832,7 @@
             <ul class="space-y-2 text-xs text-slate-400">
               <li><a class="hover:text-purple-300 transition-colors" href="#how-we-work">Know How We Work</a></li>
               <li><a class="hover:text-purple-300 transition-colors" href="#estimator">Cost Estimator</a></li>
+              <li><button type="button" data-open-brochure class="hover:text-purple-300 transition-colors">Studio Brochure</button></li>
               <li><a class="hover:text-purple-300 transition-colors" href="#inquiry">Client Inquiries</a></li>
             </ul>
           </div>
@@ -833,6 +854,49 @@
 
     </div>
   </footer>
+
+  <!-- ======================================================== -->
+  <!-- 5. STUDIO BROCHURE LIGHTBOX MODAL                        -->
+  <!-- ======================================================== -->
+  <div id="brochure-modal" role="dialog" aria-modal="true" aria-labelledby="brochure-modal-title" class="hidden fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6">
+    <div id="brochure-modal-panel" class="relative w-full max-w-3xl max-h-[92vh] rounded-2xl sm:rounded-3xl bg-[#0e0a18] border border-purple-500/40 shadow-2xl shadow-purple-950/60 overflow-hidden flex flex-col">
+      <div class="flex items-center justify-between gap-3 px-4 sm:px-6 py-3 border-b border-purple-900/50 bg-[#120d1f]">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <img src="assets/novexxa-logo.jpg" alt="" class="w-6 h-6 rounded-md object-cover border border-purple-500/30 shrink-0" />
+          <span id="brochure-modal-title" class="text-xs sm:text-sm font-bold text-white tracking-wide truncate">NOVEXXA Studio Brochure</span>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a
+            href="assets/novexxa-brochure.jpg"
+            download="NOVEXXA-Brochure.jpg"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold text-purple-200 hover:text-white bg-purple-950/70 hover:bg-purple-900/80 border border-purple-500/40 transition"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span>Download</span>
+          </a>
+          <button
+            id="close-brochure-modal"
+            type="button"
+            aria-label="Close brochure"
+            class="p-1.5 rounded-lg text-slate-300 hover:text-white bg-white/5 hover:bg-white/15 border border-white/10 transition"
+          >
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="overflow-y-auto p-2 sm:p-4 bg-[#08060d] flex items-start justify-center">
+        <img
+          src="assets/novexxa-brochure.jpg"
+          alt="NOVEXXA Web Design Studio Service Brochure — Portfolio, Pro, and Advanced Website Solutions"
+          class="w-full h-auto max-h-[80vh] object-contain rounded-xl shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
 
   <!-- ======================================================== -->
   <!-- 4. CLIENT JAVASCRIPT: INTERACTIONS & RESPONSIVENESS      -->
@@ -1251,6 +1315,46 @@
         totalFrames: 109,
         getFrameUrl: (index) => `animation_frames_laptop/ezgif-frame-${String(index + 1).padStart(3, '0')}.png`,
         isActiveViewport: () => window.innerWidth >= 1024
+      });
+
+      // 8. Studio Brochure Lightbox Modal
+      const brochureModal = document.getElementById('brochure-modal');
+      const brochurePanel = document.getElementById('brochure-modal-panel');
+      const closeBrochureBtn = document.getElementById('close-brochure-modal');
+      const openBrochureBtns = document.querySelectorAll('[data-open-brochure]');
+
+      const openBrochure = () => {
+        if (!brochureModal) return;
+        brochureModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeBrochure = () => {
+        if (!brochureModal) return;
+        brochureModal.classList.add('hidden');
+        document.body.style.overflow = '';
+      };
+
+      openBrochureBtns.forEach((btn) => {
+        btn.addEventListener('click', openBrochure);
+      });
+
+      if (closeBrochureBtn) {
+        closeBrochureBtn.addEventListener('click', closeBrochure);
+      }
+
+      if (brochureModal) {
+        brochureModal.addEventListener('click', (e) => {
+          if (brochurePanel && !brochurePanel.contains(e.target)) {
+            closeBrochure();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && brochureModal && !brochureModal.classList.contains('hidden')) {
+          closeBrochure();
+        }
       });
 
     });
